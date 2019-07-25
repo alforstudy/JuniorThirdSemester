@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd" default-lazy-init="true">
+
+	<!-- class：必须是具体类 -->
+	<bean id="userDao" class="com.kzw.dao.impl.UserDaoImpl"/>    
+    <!-- 注入方式：构造方法，setter方法 -->
+    <bean id="userService" class="com.kzw.service.UserService">
+    	<property name="userDao" ref="userDao"/>
+    </bean>
+    
+    <!-- property的配置  
+    	ref：引用另一个bean（指定bean的id）
+    	value：字符串的值（将字符串赋值给属性，存在类型转换）
+    		类型转换：使用属性编辑器来转换
+    		默认开启的属性编辑器：数值类型、布尔类型、类类型等
+    		日期类型属性编辑器，默认没有开启，需要手工注册    		
+    -->
+    
+    <!-- bean的配置  
+    	id：一般需要 （根据bean的id进行查找）
+    	class：必须是具体类
+    	scope: 默认是singleton(单例), 还可以prototype(原型), request, session, global session
+    	init-method: 创建实例之后，调用
+    	destory-method：容器销毁之前，调用
+    	factory-bean：工厂对象
+    	factory-method：工厂方法
+    -->
+    <bean id="student1" class="bean.Student" primary="true">
+    	<property name="name" value="张三"/>
+    	<property name="age" value="20"/>
+    	<property name="ctime">
+    		<bean class="java.util.Date"/>
+    	</property>
+    </bean>
+    
+    <bean id="time" class="java.util.Date" scope="prototype"/>
+    <bean id="student2" class="bean.Student" scope="prototype">
+    	<property name="name" value="张三2"/>
+    	<property name="age" value="20"/>
+    	<property name="ctime" ref="time"/>
+    </bean>
+    
+    <bean id="student3" class="bean.Student" scope="prototype" init-method="init2" destroy-method="close2">
+    	<property name="name" value="张三2"/>
+    	<property name="age" value="20"/>
+    	<property name="ctime" ref="time"/>
+    </bean>
+    
+    <!-- 构造方法方式注入 -->
+    <bean id="student4" class="bean.Student">
+    	<constructor-arg value="李四"/>
+    	<constructor-arg value="30"/>
+    	<constructor-arg ref="time"/>
+    </bean>
+    
+    <!-- 静态方法创建bean -->
+    <bean id="student5" class="bean.Factory" factory-method="getStudent">
+    	<constructor-arg value="李四2"/>
+    	<constructor-arg value="30"/>
+    	<constructor-arg ref="time"/>
+    </bean>
+    
+    <!-- 普通方法创建bean -->
+    <bean id="factory" class="bean.Factory2"/>
+    <bean id="student6" factory-bean="factory" factory-method="getStudent">
+    	<constructor-arg value="李四22"/>
+    	<constructor-arg value="30"/>
+    	<constructor-arg ref="time"/>
+    </bean>
+    
+    <!--  
+    Date date = new Date();
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String timestr = df.format(date);
+    -->
+    
+    <bean id="date" class="java.util.Date" scope="prototype"/>
+    <bean id="df" class="java.text.SimpleDateFormat">
+    	<constructor-arg value="yyyy-MM-dd HH:mm:ss"/>
+    </bean>
+    <bean id="timestr" factory-bean="df" factory-method="format" scope="prototype">
+    	<constructor-arg ref="date"/>
+    </bean>
+    
+    
+</beans>

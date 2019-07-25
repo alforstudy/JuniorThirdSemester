@@ -1,0 +1,8 @@
+
+集成Spring框架：
+	1、加入spring相关的jar包（maven管理）
+	2、编写spring配置：
+		1）基本XML
+		2）基本注解：java config
+	
+	

@@ -1,0 +1,57 @@
+
+Spring容器框架：
+	1) bean的装配 （创建bean的实例）
+	2) 依赖对象注入 （给属性赋值）
+	
+Spring的配置：
+	1) 基本xml
+	2) 基本注解（推荐使用）
+
+Spring框架是一个全栈开发框架（Java EE项目标配）
+	集成各种主流的框架（hibernate, mybatis, struts2等）
+	提供各种主流框架更简易的用法
+	提供了很多的功能和工具类
+	轻量级、无侵入的容器框架
+	
+Spring的核心技术：
+	1、IoC容器：控制反转（也叫依赖注入DI）
+	2、AOP：面向切面编程 （OOP的补充）
+	
+	
+UML类图中的依赖、关联（聚合、组合）关系：
+	依赖：
+		class A {
+			void show(B b) { ... }
+		}
+		A依赖B： A ---> B
+	关联：
+		class A {
+			private B b;
+		}
+		A关联B：
+	
+控制反转：
+	public class UserService {
+		private UserDao userDao = new UserDaoImpl();
+	}
+	UserService的依赖对象userDao由当前负责创建和管理
+	存在的问题：
+		1）高度耦合了具体实现类，不能使用多态特性
+		2）具体实现类不能实现单例模式
+		3）违反面向对象设计原则：应该针对接口编程而不是具体的实现类
+=========================		
+	public class UserService {
+		private UserDao userDao;
+		public UserService(UserDao userDao) {
+			this.userDao = userDao;
+		}
+	}
+	使用：
+		UserDao userDao = new UserDaoImpl();
+		UserService service = new UserService(userDao);
+	
+依赖注入：依赖对象通过外部注入进来
+	1) 构造方法
+	2) setter方法
+	
+		

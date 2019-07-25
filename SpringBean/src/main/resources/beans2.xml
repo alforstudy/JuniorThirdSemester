@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd" default-lazy-init="true">
+
+	<bean class="bean.MyCollect">
+		<property name="array">
+			<array>
+				<value>111</value>
+				<value>222</value>
+			</array>
+		</property>
+		
+		<property name="list">
+			<list>
+				<value>aaa</value>
+				<value>bbb</value>
+			</list>
+		</property>
+		
+		<property name="set">
+			<set>
+				<value>111</value>
+				<value>222</value>
+			</set>
+		</property>
+		
+		<property name="map">
+			<map>
+				<entry key="id" value="100"/>
+				<entry key="name" value="张三"/>
+			</map>
+		</property>
+		
+		<property name="prop">
+			<props>
+				<prop key="id">200</prop>
+				<prop key="name">李四</prop>
+			</props>
+		</property>
+		
+		<property name="prop2">
+			<value>
+				id=300
+				name=\u738b\u4e94
+			</value>
+		</property>
+	</bean>
+    
+</beans>
