@@ -1,0 +1,65 @@
+
+常用注解：
+	@Controller
+	@RestController: ==> @Controller + @ResponseBody
+			如果需要页面跳转，返回ModelAndView
+	@RequestMapping：
+		高版本：@GetMapping, @PostMapping			
+	@RequestParam：
+	@RequestHeader
+	@CookieValue
+	@PathVariable
+	@RequestBody：当请求内容类型：Content-Type：application/json (参数：{id:1, name:"abc"})
+		默认的请求内容类型：application/x-www-form-urlencoded  (参数：id=1&name=abc)
+	@ResponseBody：默认使用jackson，将返回结果转成json字符串
+	@InitBinder
+	@ModelAttribute：主要用于方法参数前，表示从session中获得值
+	@SessionAttributes：使用model.addAttribute(key, value)
+	
+
+1）@ResponseBody可能需要配合Jackson的注解使用（建议使用Jackson工具类）
+2）@Valid 来使用数据验证（JSR303，标准的实现：hibernate-validator组件）
+3）Spring Cache相关的注解，Web Service相关的注解
+
+
+400错误码：表示参数绑定错误
+
+Controller：
+	1、常用的注解
+	2、方法的参数类型
+	3、方法的返回值类型	
+	
+方法的参数类型：参数的个数和顺序一般可以随便
+1、request, response, session
+2、请求参数，使用@RequestParam（可以省略）
+3、表单或命令对象（实体对象），会自动绑定
+	可能需要使用@InitBinder进行注册属性编辑器
+4、@PathVariable，路径变量：美化url
+5、Model, Map, ModelMap：用于传递数据
+	Model/Map/ModelMap中放置的数据，会放入作用域中（默认是request作用域）
+6、Errors, BindingResult：存放绑定或验证的错误信息
+	它们必须紧跟在表单或命令对象之后，表示该对象绑定的信息
+7、SessionStatus：用于清除@SessionAttributes指定的数据
+	使用HttpSession.invalidate()无效
+	
+		
+方法的返回值类型：
+1、void：使用默认的视图名称（请求映射url）
+2、String：返回视图名称，跳转到相应的页面
+3、String：使用前缀：redirect, forward
+	如： return "redirect:/path";  //重定向
+4、void：直接使用request, response进行页面跳转
+	直接使用response的输出流进行处理，如：文件下载，输出JSON文本
+5、ModelAndView：返回model+view视图名
+	如果使用@RestController，当需要页面跳转时，只能返回ModelAndView
+6、Model/Map/ModelMap/对象：
+	使用默认的视图名，返回值是Model或者放入Model中
+7、@ResponseBody，并返回对象：
+	默认使用Jackson组件，将对象转成JSON字符串，返回出去
+	@RestController 等价于 @Controller + @ResponseBody	
+		
+
+	
+ 
+	
+	

@@ -9,7 +9,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
- * 该类会被自动检测到
+ * 该类会被Servler自动检测到
  * 可以在该类上注册servlet, filter, listener
  * */
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {

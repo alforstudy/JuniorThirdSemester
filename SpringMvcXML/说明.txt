@@ -1,0 +1,11 @@
+
+使用XML配置：spring, spring mvc
+	spring：需要一个配置文件
+	spring mvc：也需要一个配置文件
+		spring mvc共用spring的容器
+		
+		
+Spring的重点：
+	1、相关的注解
+	2、方法的返回值或类型
+	3、方法的参数值或类型

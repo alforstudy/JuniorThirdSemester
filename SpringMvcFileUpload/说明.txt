@@ -1,0 +1,22 @@
+
+文件的上传下载：
+	文件的上传：
+		servlet 3.0之前，servlet API不支持文件上传的
+			需要借助第3方组件：commons-fileupload, cos, smart-upload等
+			spring mvc集成：commons-fileupload和标准servlet的文件上传
+			
+		servlet 3.0（tomcat 7）之后，servlet API已支持文件上传
+			文件上传、注解配置servlet,filter,listener、异常请求
+		文件上传时表单的设置：
+			<form method="post" enctype="multipart/form-data">
+		
+	文件的下载：
+		文件流的读写：将文件输入流写到浏览器输出流中
+		设置响应response的头部信息
+
+		
+集成Spring, Spring MVC, JPA：
+
+		
+			
+

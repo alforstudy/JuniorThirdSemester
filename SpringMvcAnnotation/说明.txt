@@ -1,0 +1,9 @@
+
+集成Spring和Spring MVC：
+	1、Spring的配置文件（java config）
+	2、Spring mvc的配置文件（java config）
+	3、原web.xml中的配置使用java config
+	
+	
+Spring MVC的DispatcherServlet不拦截jsp页面
+	会拦截除了.jsp之外的所有请求
